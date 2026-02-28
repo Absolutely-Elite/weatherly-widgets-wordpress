@@ -1,0 +1,31 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "weatherly/weather",
+    "version": "1.0.0",
+    "title": "Weatherly Weather",
+    "category": "widgets",
+    "icon": "cloud",
+    "description": "Display real-time weather for any US or Canadian city.",
+    "keywords": [ "weather", "forecast", "temperature" ],
+    "supports": {
+        "html": false,
+        "align": [ "wide", "full" ]
+    },
+    "attributes": {
+        "city": {
+            "type": "string",
+            "default": ""
+        },
+        "state": {
+            "type": "string",
+            "default": ""
+        },
+        "format": {
+            "type": "string",
+            "default": "compact"
+        }
+    },
+    "textdomain": "weatherly-widgets",
+    "editorScript": "file:./edit.js"
+}

@@ -1,0 +1,243 @@
+/**
+ * Weatherly Widgets — Default Widget Styles
+ * Override these in your theme or via WP Customizer (Pro).
+ */
+
+/* Base widget container */
+.weatherly-widget {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    max-width: 100%;
+    line-height: 1.5;
+    color: #1f2937;
+}
+
+.weatherly-widget * {
+    box-sizing: border-box;
+}
+
+.weatherly-widget a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.weatherly-widget a:hover {
+    text-decoration: underline;
+}
+
+/* ───────────────────────── Compact Layout ───────────────────────── */
+
+.weatherly-compact {
+    padding: 16px;
+}
+
+.weatherly-compact .weatherly-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.weatherly-compact .weatherly-icon {
+    flex-shrink: 0;
+}
+
+.weatherly-compact .weatherly-location {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.weatherly-compact .weatherly-temp {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
+}
+
+.weatherly-compact .weatherly-condition {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.weatherly-compact .weatherly-details {
+    display: flex;
+    gap: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.weatherly-compact .weatherly-label {
+    font-weight: 500;
+    color: #9ca3af;
+    margin-right: 4px;
+}
+
+.weatherly-compact .weatherly-footer {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #f3f4f6;
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+/* ───────────────────────── Full Layout ───────────────────────── */
+
+.weatherly-full .weatherly-current {
+    padding: 20px;
+}
+
+.weatherly-full .weatherly-current-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.weatherly-full .weatherly-icon-lg {
+    flex-shrink: 0;
+}
+
+.weatherly-full .weatherly-city-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px;
+    color: #374151;
+}
+
+.weatherly-full .weatherly-temp-lg {
+    font-size: 36px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.1;
+}
+
+.weatherly-full .weatherly-condition-text {
+    font-size: 15px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+.weatherly-full .weatherly-current-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    font-size: 13px;
+    color: #4b5563;
+}
+
+.weatherly-full .weatherly-detail-item {
+    display: flex;
+    gap: 4px;
+}
+
+.weatherly-full .weatherly-detail-item .weatherly-label {
+    font-weight: 500;
+    color: #9ca3af;
+}
+
+/* Forecast grid */
+.weatherly-full .weatherly-forecast {
+    padding: 16px 20px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.weatherly-full .weatherly-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 12px;
+}
+
+.weatherly-full .weatherly-forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .weatherly-full .weatherly-forecast-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.weatherly-full .weatherly-forecast-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.weatherly-full .weatherly-day-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.weatherly-full .weatherly-day-temps {
+    font-size: 13px;
+}
+
+.weatherly-full .weatherly-high {
+    font-weight: 600;
+    color: #dc2626;
+}
+
+.weatherly-full .weatherly-low {
+    color: #2563eb;
+    margin-left: 4px;
+}
+
+.weatherly-full .weatherly-footer {
+    padding: 10px 20px;
+    border-top: 1px solid #f3f4f6;
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+/* ───────────────────────── Sidebar Layout ───────────────────────── */
+
+.weatherly-sidebar {
+    max-width: 300px;
+}
+
+/* ───────────────────────── Attribution (Free tier) ───────────────────────── */
+
+.weatherly-attribution {
+    font-size: 11px;
+    color: #9ca3af;
+    margin-top: 4px;
+}
+
+.weatherly-attribution a {
+    color: #9ca3af;
+}
+
+.weatherly-attribution a:hover {
+    color: #2563eb;
+}
+
+/* ───────────────────────── Error / Fallback ───────────────────────── */
+
+.weatherly-error,
+.weatherly-fallback {
+    padding: 16px;
+    font-size: 14px;
+    color: #6b7280;
+    text-align: center;
+}
+
+.weatherly-error code {
+    background: #f3f4f6;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+}

@@ -1,0 +1,11 @@
+/* Weatherly Widgets — Admin Styles */
+.weatherly-settings .form-table th {
+    width: 180px;
+}
+.weatherly-usage-guide h3 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.weatherly-usage-guide code {
+    font-size: 13px;
+}
