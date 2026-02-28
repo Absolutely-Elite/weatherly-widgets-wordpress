@@ -13,10 +13,12 @@ $current   = $data['current'] ?? array();
 $forecast  = $data['forecast'] ?? array();
 $sun       = $data['sun'] ?? array();
 $city_name = esc_html( $data['city'] ?? $city );
-$state_code = esc_html( strtoupper( $data['state'] ?? $state ) );
+$state_display = esc_html( ! empty( $data['state'] ) ? ucwords( strtolower( $data['state'] ) ) : ( $state ?? '' ) );
 $city_url  = esc_url( $data['city_url'] ?? WEATHERLY_API_BASE );
 $icon      = $current['icon'] ?? 'cloudy';
 $icon_url  = esc_url( WEATHERLY_PLUGIN_URL . 'public/icons/' . $icon . '.svg' );
+$wind_dir  = $this->degrees_to_compass( $current['wind_direction'] ?? '' );
+$wind_speed = $this->format_wind_speed( $current['wind_speed'] ?? '' );
 ?>
 <div class="weatherly-widget weatherly-full">
     <!-- Current Conditions -->
@@ -27,25 +29,31 @@ $icon_url  = esc_url( WEATHERLY_PLUGIN_URL . 'public/icons/' . $icon . '.svg' );
                  class="weatherly-icon-lg" width="64" height="64" loading="lazy">
             <div>
                 <h3 class="weatherly-city-name">
-                    <a href="<?php echo $city_url; ?>" target="_blank" rel="noopener"><?php echo $city_name; ?>, <?php echo $state_code; ?></a>
+                    <a href="<?php echo $city_url; ?>" target="_blank" rel="noopener"><?php echo $city_name; ?>, <?php echo $state_display; ?></a>
                 </h3>
                 <div class="weatherly-temp-lg"><?php echo esc_html( $current['temp_f'] ?? '--' ); ?>°F</div>
                 <div class="weatherly-condition-text"><?php echo esc_html( $current['condition'] ?? '' ); ?></div>
             </div>
         </div>
         <div class="weatherly-current-details">
+            <?php if ( ! empty( $current['wind_speed'] ) && $current['wind_speed'] !== null && $current['wind_speed'] !== 'None' ) : ?>
             <div class="weatherly-detail-item">
                 <span class="weatherly-label">Wind</span>
-                <span><?php echo esc_html( ( $current['wind_direction'] ?? '' ) . ' ' . ( $current['wind_speed'] ?? '--' ) ); ?> mph</span>
+                <span><?php echo esc_html( $wind_dir . ' ' . $wind_speed ); ?> mph</span>
             </div>
+            <?php endif; ?>
+            <?php if ( ! empty( $current['humidity'] ) && $current['humidity'] !== null && $current['humidity'] !== 'None' ) : ?>
             <div class="weatherly-detail-item">
                 <span class="weatherly-label">Humidity</span>
-                <span><?php echo esc_html( $current['humidity'] ?? '--' ); ?>%</span>
+                <span><?php echo esc_html( $current['humidity'] ); ?>%</span>
             </div>
+            <?php endif; ?>
+            <?php if ( ! empty( $current['dewpoint'] ) && $current['dewpoint'] !== null && $current['dewpoint'] !== 'None' ) : ?>
             <div class="weatherly-detail-item">
                 <span class="weatherly-label">Dewpoint</span>
-                <span><?php echo esc_html( $current['dewpoint'] ?? '--' ); ?>°F</span>
+                <span><?php echo esc_html( $current['dewpoint'] ); ?>°F</span>
             </div>
+            <?php endif; ?>
             <?php if ( ! empty( $sun['sunrise'] ) ) : ?>
             <div class="weatherly-detail-item">
                 <span class="weatherly-label">Sunrise</span>
@@ -82,7 +90,8 @@ $icon_url  = esc_url( WEATHERLY_PLUGIN_URL . 'public/icons/' . $icon . '.svg' );
     </div>
     <?php endif; ?>
 
-    <!-- Attribution -->
+    <?php if ( isset( $tier ) && $tier !== 'pro' ) : ?>
+    <!-- Attribution (Free tier only — required) -->
     <div class="weatherly-footer">
         <small>
             <a href="<?php echo $city_url; ?>" target="_blank" rel="noopener">
@@ -91,4 +100,5 @@ $icon_url  = esc_url( WEATHERLY_PLUGIN_URL . 'public/icons/' . $icon . '.svg' );
             · <?php echo esc_html( $data['attribution'] ?? 'Weather data from National Weather Service' ); ?>
         </small>
     </div>
+    <?php endif; ?>
 </div>

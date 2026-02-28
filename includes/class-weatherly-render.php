@@ -54,12 +54,15 @@ class Weatherly_Render {
         $state_slug = strtolower( sanitize_text_field( $state ) );
         $widget_id  = 'weatherly-widget-' . $city_slug . '-' . $state_slug;
 
-        $city_url = esc_url( WEATHERLY_API_BASE . '/weather/' . $state_slug . '/' . $city_slug );
+        $city_url   = esc_url( WEATHERLY_API_BASE . '/weather/' . $state_slug . '/' . $city_slug );
+        $icons_base = esc_url( WEATHERLY_PLUGIN_URL . 'public/icons/' );
 
         $html  = '<div id="' . esc_attr( $widget_id ) . '" ';
         $html .= 'class="weatherly-widget weatherly-free" ';
         $html .= 'data-city="' . esc_attr( $city ) . '" ';
-        $html .= 'data-state="' . esc_attr( strtoupper( $state ) ) . '">';
+        $html .= 'data-state="' . esc_attr( strtoupper( $state ) ) . '" ';
+        $html .= 'data-city-url="' . $city_url . '" ';
+        $html .= 'data-icons-base="' . $icons_base . '">';
         $html .= '</div>';
         $html .= '<p class="weatherly-attribution">';
         $html .= '<a href="' . $city_url . '" target="_blank" rel="noopener">Powered by Weatherly Widgets</a>';
@@ -98,6 +101,9 @@ class Weatherly_Render {
         if ( ! in_array( $format, $allowed_formats, true ) ) {
             $format = 'compact';
         }
+
+        // Pass tier to template (Pro = no attribution required)
+        $tier = get_option( 'weatherly_tier', 'free' );
 
         // Render the template
         $template_file = WEATHERLY_PLUGIN_DIR . 'templates/' . $format . '.php';
@@ -141,5 +147,33 @@ class Weatherly_Render {
      */
     private function render_error( $message ) {
         return '<div class="weatherly-widget weatherly-error"><p>' . esc_html( $message ) . '</p></div>';
+    }
+
+    /**
+     * Convert wind direction degrees to compass direction.
+     *
+     * @param mixed $degrees Wind direction in degrees (string or number).
+     * @return string Compass direction (e.g. "SSW") or original value if not numeric.
+     */
+    public function degrees_to_compass( $degrees ) {
+        if ( ! is_numeric( $degrees ) ) {
+            return $degrees;
+        }
+        $directions = array( 'N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW' );
+        $index      = (int) round( floatval( $degrees ) / 22.5 ) % 16;
+        return $directions[ $index ];
+    }
+
+    /**
+     * Format wind speed to rounded integer.
+     *
+     * @param mixed $speed Wind speed (string or number).
+     * @return string|int Rounded integer or original value if not numeric.
+     */
+    public function format_wind_speed( $speed ) {
+        if ( ! is_numeric( $speed ) ) {
+            return $speed;
+        }
+        return (int) round( floatval( $speed ) );
     }
 }

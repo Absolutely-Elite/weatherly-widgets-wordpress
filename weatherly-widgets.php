@@ -143,7 +143,7 @@ final class Weatherly_Widgets {
             if ( 'free' === $tier ) {
                 wp_enqueue_script(
                     'weatherly-widget',
-                    WEATHERLY_API_BASE . '/static/js/widget.js',
+                    WEATHERLY_PLUGIN_URL . 'public/js/widget.js',
                     array(),
                     WEATHERLY_VERSION,
                     true
