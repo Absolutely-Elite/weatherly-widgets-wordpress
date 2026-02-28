@@ -5,7 +5,7 @@ Tags: weather, forecast, weather widget, temperature, NWS
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,14 @@ The plugin caches weather data locally using WordPress transients. If the API is
 
 == Changelog ==
 
+= 1.0.6 =
+* Fix wind display: show compass direction (e.g. SSW) and rounded speed instead of raw "210 9.252 mph"
+* Fix state name: show title case (e.g. Texas) instead of all caps (TEXAS)
+* Fix dewpoint/humidity/wind: hide rows when data is null instead of showing "–°F"
+* Pro tier: attribution footer is now optional (hidden by default)
+* Add partly-cloudy.svg icon (fixes broken icon for Tonight/Monday forecasts)
+* Bump version display for updates
+
 = 1.0.0 =
 * Initial release
 * Shortcode support: `[weatherly city="Houston" state="TX"]`
@@ -125,6 +133,9 @@ The plugin caches weather data locally using WordPress transients. If the API is
 * 35,000+ US and Canadian cities supported
 
 == Upgrade Notice ==
+
+= 1.0.6 =
+Bug fixes: wind formatting, state casing, null dewpoint handling, Pro attribution, partly-cloudy icon.
 
 = 1.0.0 =
 Initial release. Install and add weather to your site in 60 seconds.

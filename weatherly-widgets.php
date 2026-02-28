@@ -3,7 +3,7 @@
  * Plugin Name:       Weatherly Widgets
  * Plugin URI:        https://weatherlywidgets.com/wordpress
  * Description:       Display real-time weather forecasts on your WordPress site. Current conditions, 7-day outlook, and hourly forecasts for 35,000+ US & Canadian cities.
- * Version:           1.0.0
+ * Version:           1.0.6
  * Requires at least: 5.8
  * Requires PHP:      7.4
  * Author:            Absolutely Elite LLC
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants
-define( 'WEATHERLY_VERSION', '1.0.0' );
+define( 'WEATHERLY_VERSION', '1.0.6' );
 define( 'WEATHERLY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WEATHERLY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'WEATHERLY_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
